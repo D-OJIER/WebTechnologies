@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Media Table</title>
+        <style>
+            header, footer {
+                background-color: #62a382;
+                text-align: center;
+                padding: 10px 0;
+                border-radius: 10px;
+                border: 1px solid #000;
+            }
+
+            video, iframe{
+                width: 100%;
+                height: 100%;
+            }
+            table {
+                width: 99%;
+                margin: 20px auto;
+                height: 80vh;
+                table-layout: fixed;
+                border-collapse: collapse;
+                box-shadow: 0 0 15px rgba(174, 1, 255, 0.1);
+                background-color: #fff;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+            td, th {
+                border: 1px solid #dee2e6;
+                padding: 10px;
+                vertical-align: middle;
+                text-align: center;
+                background-color: #62a382;
+            }
+            td:hover {
+                background-color: #ced4da;
+                transition: background-color 0.3s ease;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Media Table</h1>
+        </header>
+
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <video controls>
+                            <source src="Elden Ring.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </td>
+                    <td>
+                        <iframe src="https://www.youtube.com/embed/L5mzq4zt7Vs?si=Bo2SUK_sptH00rS4" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <audio controls>
+                            <source src="Country Roads.mp3" type="audio/mp3">
+                            Your browser does not support the audio tag.
+                        </audio>
+                    </td>
+                    <td>
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3qhlB30KknSejmIvZZLjOD?utm_source=generator" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <footer>
+            <p>Web Technologies Assignment 1</p>
+        </footer>
+    </body>
+</html>
