@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Media Table</title>
+        <style>
+            table {
+                width: 100%;
+                height: 100vh;
+                table-layout: fixed;
+            }
+            td,th{
+                border: 1px solid #000;
+                width: auto;
+                height: auto;
+                vertical-align: middle;
+                text-align: center;
+            }
+            video, iframe{
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Offline</th>
+                    <th>Online</th>
+                </tr>
+                <tr>
+                    <td>
+                        <video controls>
+                            <source src="ELDEN RING(720).mp4" type="video/mp4">
+                        </video>
+                    </td>
+                    <td>
+                        <iframe src="https://www.youtube.com/embed/L5mzq4zt7Vs?si=Bo2SUK_sptH00rS4" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <audio controls>
+                            <source src="Country Roads.mp3" type="audio/mp3">
+                        </audio>
+                    </td>
+                    <td>
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3qhlB30KknSejmIvZZLjOD?utm_source=generator" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
