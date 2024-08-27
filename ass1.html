@@ -5,42 +5,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Media Table</title>
         <style>
-            table{
+            table {
                 width: 100%;
-                border-collapse: collapse;
+                height: 100vh;
                 table-layout: fixed;
             }
-            th, td {
-                padding: 10px;
-                text-align: center;
+            td,th{
+                border: 1px solid #000;
+                width: auto;
+                height: auto;
                 vertical-align: middle;
+                text-align: center;
             }
-            video{
+            video, iframe{
                 width: 100%;
-                height: 300px;
-                object-fit:cover;       
-            }
-            iframe{
-                width:100%;
-                height: 300px; 
-            }
-            td {
-                width: 50%;
+                height: 100%;
             }
         </style>
     </head>
     <body>
-        <header>
-            <h1>Media Table</h1>
-        </header>
-
         <table>
             <tbody>
+                <tr>
+                    <th>Offline</th>
+                    <th>Online</th>
+                </tr>
                 <tr>
                     <td>
                         <video controls>
                             <source src="ELDEN RING(720).mp4" type="video/mp4">
-                            Your browser does not support the video tag.
                         </video>
                     </td>
                     <td>
@@ -51,7 +44,6 @@
                     <td>
                         <audio controls>
                             <source src="Country Roads.mp3" type="audio/mp3">
-                            Your browser does not support the audio tag.
                         </audio>
                     </td>
                     <td>
@@ -60,8 +52,5 @@
                 </tr>
             </tbody>
         </table>
-        <footer>
-            <p>Web Technologies Assignment 1</p>
-        </footer>
     </body>
 </html>
