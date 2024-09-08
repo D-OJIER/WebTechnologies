@@ -274,72 +274,6 @@
             animation-delay: 0.6s;
         }
 
-        /* Audio Container Styles */
-        .audio-container {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            width: 150px;
-            height: 125px;
-            border: none;
-            border-radius: 50%;
-            background-color: #34C759;
-            padding: 0;
-            z-index: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Audio Player Styles */
-        audio {
-            width: 100%;
-            height: 100%;
-            background-color: transparent;
-            border: none;
-            border-radius: 50%;
-            padding: 0;
-        }
-
-        /* Audio Visualizer Styles */
-        .visualizer {
-            width: 150px;
-            height: 125px;
-            background: transparent;
-            border-radius: 50%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-        }
-
-        .visualizer > div {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            animation: pulsate 1.5s infinite ease-in-out;
-        }
-
-        .visualizer > div:nth-child(2) {
-            animation-delay: -0.75s;
-        }
-
-        @keyframes pulsate {
-            0% {
-                transform: scale(0.8);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.2);
-                opacity: 0.6;
-            }
-            100% {
-                transform: scale(0.8);
-                opacity: 1;
-            }
-        }
     </style>
 </head>
 <body>
@@ -369,10 +303,6 @@
             </div>
         </div>
     </section>
-
-    <audio controls autoplay muted loop>
-        <source src="Berserk_OST.mp3" type="audio/mp3">
-    </audio>
 
     <!-- Section: Best Games -->
     <section class="category">
@@ -479,16 +409,6 @@
     <footer>
         <p>&copy; 2024 Ultimate Gaming Hub</p>
     </footer>
-    <!-- Audio Player -->
-    <div class="audio-container">
-        <audio controls>
-            <source src="Berserk_OST.mp3" type="audio/mp3">
-            Your browser does not support the audio element.
-        </audio>
-        <div class="visualizer">
-            <div></div>
-            <div></div>
-        </div>
-    </div>
+    
 </body>
 </html>
