@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Gaming Hub</title>
+    <style>
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a1a, #000000);
+            font-family: 'Arial', sans-serif;
+            color: #33ff33;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-shadow: 4px 4px 10px #000000;
+            font-size: 2.5rem;
+            margin-top: 20px;
+            background: linear-gradient(90deg, #33ff33, #ff33ff);
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: glowTitle 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowTitle {
+            0% {
+                text-shadow: 0 0 20px #33ff33, 0 0 30px #ff33ff, 0 0 40px #33ff33;
+            }
+            100% {
+                text-shadow: 0 0 40px #ff33ff, 0 0 50px #ff33ff, 0 0 60px #ff33ff;
+            }
+        }
+
+        .founders-section {
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .founders-section h2 {
+            font-size: 2rem;
+            color: #fff;
+            text-shadow: 3px 3px 10px #00ff00;
+            margin-bottom: 20px;
+        }
+
+        .founders-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .founder {
+            width: 180px;
+            padding: 20px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.7));
+            box-shadow: 0 4px 8px rgba(0, 255, 0, 0.6);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .founder img {
+            width: 100%;
+            border-radius: 50%;
+            transition: transform 0.4s ease;
+        }
+
+        .founder p {
+            color: #fff;
+            margin-top: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .founder:hover {
+            box-shadow: 0 8px 16px rgba(0, 255, 0, 0.8);
+            transform: scale(1.05);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.5));
+        }
+
+        .founder:hover img {
+            transform: scale(1.1);
+        }
+
+        .founder:hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
+            opacity: 0.5;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 14px;
+            color: #ffffff80;
+        }
+
+        footer:hover {
+            color: #33ff33;
+            transition: color 0.3s ease;
+        }
+
+        .category {
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .category h2 {
+            font-size: 2rem;
+            color: #fff;
+            text-shadow: 3px 3px 10px #00ff00;
+            transition: color 0.3s ease;
+        }
+
+        .category h2:hover {
+            color: #ff33ff;
+        }
+
+        .item-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .item {
+            width: 200px;
+            padding: 20px;
+            background-color: #222;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 255, 0, 0.4);
+            transition: transform 0.8s ease, background-color 0.5s ease;
+            position: relative;
+        }
+
+        .item:hover {
+            transform: rotate(360deg);
+            background-color: #333;
+        }
+
+        .item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        @keyframes pulse {
+            0% {
+                text-shadow: 0 0 10px #33ff33, 0 0 20px #33ff33, 0 0 30px #33ff33;
+            }
+            50% {
+                text-shadow: 0 0 20px #ff33ff, 0 0 40px #ff33ff, 0 0 60px #ff33ff;
+            }
+            100% {
+                text-shadow: 0 0 10px #33ff33, 0 0 20px #33ff33, 0 0 30px #33ff33;
+            }
+        }
+
+        .item p {
+            color: #fff;
+            margin-top: 10px;
+            animation: pulse 2s infinite alternate;
+        }
+
+        .bonus-section {
+            position: relative;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #111;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 0, 0.6);
+            overflow: hidden;
+        }
+
+        .bonus-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("PcSetup.jpeg") no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+
+        .bonus-section:hover::before {
+            opacity: 0;
+        }
+
+        .bonus-content {
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .bonus-section:hover .bonus-content {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            20% {
+                transform: translateX(-10px);
+                opacity: 0.8;
+            }
+            40% {
+                transform: translateX(10px);
+                opacity: 1;
+            }
+            60% {
+                transform: translateX(-10px);
+                opacity: 0.8;
+            }
+            80% {
+                transform: translateX(10px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .bonus-item {
+            opacity: 0;
+            transform: translateX(20px);
+            animation: none;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .bonus-content:hover .bonus-item {
+            opacity: 1;
+            transform: translateX(0);
+            animation: glitch 1s ease-in-out;
+        }
+
+        .bonus-item:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .bonus-item:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .bonus-item:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        /* Audio Container Styles */
+        .audio-container {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 150px;
+            height: 125px;
+            border: none;
+            border-radius: 50%;
+            background-color: #34C759;
+            padding: 0;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Audio Player Styles */
+        audio {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            border: none;
+            border-radius: 50%;
+            padding: 0;
+        }
+
+        /* Audio Visualizer Styles */
+        .visualizer {
+            width: 150px;
+            height: 125px;
+            background: transparent;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .visualizer > div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            animation: pulsate 1.5s infinite ease-in-out;
+        }
+
+        .visualizer > div:nth-child(2) {
+            animation-delay: -0.75s;
+        }
+
+        @keyframes pulsate {
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.6;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Ultimate Gaming Hub</h1>
+        <p class="theme-description">
+            A powerful GPU, a solid gaming setup, and the right game—these are the pillars that elevate your gaming experience. 
+            <br>The perfect combination sets the mood for an unforgettable journey, no matter the virtual world you dive into.
+        </p>
+    </header>
+    
+    <!-- Founders Section -->
+    <section class="founders-section">
+        <h2>Meet the Founders</h2>
+        <div class="founders-list">
+            <div class="founder">
+                <img src="Marshall.jpg" alt="Founder 1">
+                <p>Adaikal Susan Beschi JI<br>311122104005</p>
+            </div>
+            <div class="founder">
+                <img src="Ted.jpg" alt="Founder 2">
+                <p>Alfred Reijo Philomin F<br>311122104010</p>
+            </div>
+            <div class="founder">
+                <img src="Barney.jpg" alt="Founder 3">
+                <p>Jensen Benito AN<br>311122104060</p>
+            </div>
+        </div>
+    </section>
+
+    <audio controls autoplay muted loop>
+        <source src="Berserk_OST.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- Section: Best Games -->
+    <section class="category">
+        <h2>Best Games to Play</h2>
+        <p class="theme-description">From immersive worlds to intense multiplayer battles, the game you choose sets the tone.</p>
+        <div class="item-list">
+            <div class="item">
+                <img src="black.jpg" alt="Black Myth: Wukong">
+                <p>Black Myth: Wukong</p>
+            </div>
+            <div class="item">
+                <img src="Elden-Ring.jpg" alt="Elden Ring">
+                <p>Elden Ring</p>
+            </div>
+            <div class="item">
+                <img src="valorant_.jpg" alt="Valorant">
+                <p>Valorant</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Best GPUs -->
+    <section class="category">
+        <h2>Top Graphics Cards</h2>
+        <p class="theme-description">The right GPU unleashes the full potential of your game, bringing your world to life in stunning detail.</p>
+        <div class="item-list">
+            <div class="item">
+                <img src="4090.jpg" alt="NVIDIA RTX 4090">
+                <p>NVIDIA RTX 4090</p>
+            </div>
+            <div class="item">
+                <img src="rx 7900.jpg" alt="Radeon RX 7900 XTX">
+                <p>Radeon RX 7900 XTX</p>
+            </div>
+            <div class="item">
+                <img src="4070tisuper.png" alt="RTX 4070 Ti SUPER">
+                <p>RTX 4070 Ti SUPER</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Best Gaming Accessories -->
+    <section class="category">
+        <h2>Best Gaming Accessories</h2>
+        <p class="theme-description">Your setup defines your playstyle. The right accessories ensure you're always at your best.</p>
+        <div class="item-list">
+            <div class="item">
+                <img src="mouse.jpeg" alt="Gaming Mouse">
+                <p>Gaming Mouse</p>
+            </div>
+            <div class="item">
+                <img src="keyboard.jpeg" alt="Mechanical Keyboard">
+                <p>Mechanical Keyboard</p>
+            </div>
+            <div class="item">
+                <img src="headset.jpeg" alt="Gaming Headset">
+                <p>Gaming Headset</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bonus Section -->
+    <section class="category">
+        <h2>Bonus Section</h2>
+        <div class="bonus-section">
+            <div class="bonus-content">
+                <h3>Special Mentions</h3>
+                <div class="bonus-item">
+                    <h2>Special Game Mention</h2>
+                    <p class="theme-description">A game that stands the test of time, earning its spot in gaming history.The G.O.A.T.</p>
+                    <div class="item-list">
+                        <div class="item">
+                            <img src="ds3.jpg" alt="The Witcher 3: Wild Hunt">
+                            <p>Dark Souls 3</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bonus-item">
+                    <h2>Special GPU Mention</h2>
+                    <p class="theme-description">A powerful GPU, still celebrated for its performance and value.</p>
+                    <div class="item-list">
+                        <div class="item">
+                            <img src="gtx1660super.jpg" alt="NVIDIA GTX 1660 Super">
+                            <p>NVIDIA GTX 1660 Super</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bonus-item">
+                    <h2>Special Gaming Accessory Mention</h2>
+                    <p class="theme-description">One accessory that elevates the gaming experience beyond expectations.</p>
+                    <div class="item-list">
+                        <div class="item">
+                            <img src="monitor.jpg" alt="Wireless Charging Mouse Pad">
+                            <p>Gaming Monitor</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Ultimate Gaming Hub</p>
+    </footer>
+    <!-- Audio Player -->
+    <div class="audio-container">
+        <audio controls>
+            <source src="Berserk_OST.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+        <div class="visualizer">
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</body>
+</html>
