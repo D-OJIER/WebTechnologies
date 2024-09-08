@@ -1,0 +1,19 @@
+# Shadows:
+Box shadows are applied to elements like `.founder` and `.item`, creating a glowing effect and giving them a raised, 3D-like appearance. This shadow effect enhances depth and makes the design visually appealing.
+### Here shadows are used in the div tag of class = `founder`, which creates a glowing, lifted look, making the cards stand out.
+
+# Text:
+Various text-related styles are applied to give a futuristic, neon look. The font color is set to green (#33ff33) across the body, and text-shadow effects are applied for a glowing effect. Hover effects on text further enhance user interactivity by adding shadows or changing colors.
+### Here the text color and glow effect are applied to tags like `h1` and `.item`, making the text appear dynamic and tech-inspired.
+
+# Transitions:
+Smooth transitions are applied to elements like `.founder` and `.bonus-section`, allowing them to scale, rotate, or change colors when hovered. These transitions provide a seamless experience by gradually transforming elements over a defined period.
+### Here transitions are applied to `.founder`, making it scale up and change shadow intensity when hovered, creating an interactive effect.
+
+# Transformations:
+The transform property is used to create effects like scaling and rotating. Elements such as `.founder` and `.item` scale up slightly when hovered, and some rotate 360 degrees to add a dynamic, gaming-like feel.
+### Here transformation effects are applied to `.founder`, causing the box to scale up and rotate 360 degrees on hover.
+
+# Animations:
+Keyframe animations are used for various elements like `.item` and `.bonus-item` to create glowing and pulsing effects. For instance, text colors pulse between green and magenta, adding a lively and futuristic style.
+### Here animation is used on `.item` text, making the colors alternate and glow, which enhances the neon-like design.
