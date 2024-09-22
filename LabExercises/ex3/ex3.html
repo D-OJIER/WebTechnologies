@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC Cabinet Components</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#home">PC Cabinet Components</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#components">Components</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#building-a-pc">Building a PC</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#troubleshooting">Troubleshooting</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 id="home">PC Cabinet Components</h1>
+
+        <div class="row">
+            <div class="col-md-6 component" id="motherboard">
+                <h2 style="color: #00ff00; text-align: left; border-bottom: 2px solid #00ff00;">Motherboard</h2>
+                <p>The motherboard is the main circuit board that houses the CPU, RAM, and other essential components. It connects all the parts of a computer and allows them to communicate with each other.</p>
+            </div>
+            <div class="col-md-6 component" id="cpu">
+                <h2 style="color: #00ff00; text-align: center; border-bottom: 2px solid #00ff00;">CPU (Central Processing Unit)</h2>
+                <p>The CPU is the brain of the computer where most calculations take place. It executes instructions from programs and processes data.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 component" id="ram">
+                <h2 style="color: #00ff00; text-align: right; border-bottom: 2px solid #00ff00;">RAM (Random Access Memory)</h2>
+                <p style="font-size: 1.2em; color: #a0ffa0;">RAM is the memory used by the CPU to store and access data quickly. It is volatile memory, meaning it loses its content when the power is turned off.</p>
+            </div>
+            <div class="col-md-6 component" id="gpu">
+                <h2 style="color: #00ff00; text-align: left; border-bottom: 2px solid #00ff00;">GPU (Graphics Processing Unit)</h2>
+                <p>The GPU is responsible for rendering images and video. It is crucial for gaming and graphic-intensive applications.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 component" id="psu">
+                <h2>PSU (Power Supply Unit)</h2>
+                <p>The PSU converts electrical power from an outlet into a usable form for the other components of the computer.</p>
+            </div>
+            <div class="col-md-6 component" id="storage">
+                <h2>Storage (HDD/SSD)</h2>
+                <p>Storage devices like HDDs and SSDs are used to store data permanently. SSDs are faster and more reliable than traditional HDDs.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5" id="components">
+        <h1>Components</h1>
+
+        <p>
+            The image below represents a high-performance gaming PC. Each part plays a crucial role in ensuring the machine runs smoothly, whether it's for gaming, content creation, or other intensive tasks. Click on the different components in the image to learn more about them, including the CPU, GPU, RAM, and more. This interactive map allows you to explore the various elements that make up a powerful computer.
+        </p>
+        <img src="pc.jpg" alt="PC" usemap="#PcMap" class="img-fluid" id="pcImage" width: 100%; height: auto;>
+        <map name="PcMap" id="PcMap">
+            <area shape="circle" coords="1387,1732,200" href="https://www.amd.com/en/products/processors/desktops/ryzen.html" alt="Processors" target="_blank">
+            <area shape="rect" coords="1686,1309,1945,2186" href="https://www.corsair.com/us/en/c/memory" alt="Ram" target="_blank">
+            <area shape="poly" coords="278,2345,368,2648,426,2686,954,2712,1353,2684,1782,2712,2653,2662,2652,2520,2488,2464,2480,2342" href="https://www.nvidia.com/en-in/geforce/graphics-cards/" alt="Gpu" target="_blank">
+            <area shape="poly" coords="2542,893,2598,3091,2975,3400,2900,515" href="https://www.corsair.com/us/en/c/cpu-coolers" alt="Fans" target="_blank" >
+            <area shape="poly" coords="341,250,341,457,762,1031,2248,1026,2622,457,2620,252" href="https://www.corsair.com/us/en/s/hydro-x-series-custom-cooling" alt="Cooler" target="_blank" >
+            <area shape="poly" coords="597,3723,1454,3697,1450,3145,848,3161,618,3559"  href="https://storage.toshiba.com/consumer-hdd" alt="Hdd1" target="_blank" >
+            <area shape="poly" coords="1779,3699,2588,3674,2602,3600,2265,3155,1685,3179"  href="https://storage.toshiba.com/consumer-hdd" alt="Hdd2" target="_blank" >
+            <area shape="rect" coords="1029,2105,1529,2225"  href="https://www.samsung.com/in/memory-storage/all-memory-storage/" alt="Ssd" target="_blank" >
+            <area shape="poly" coords="431,1234,431,2252,1014,2239,1009,2108,1693,2098,1693,1940,1180,1942,1170,1543,1698,1528,1688,1214"  href="https://in.msi.com/Motherboards" alt="Motherboards" target="_blank" >
+            <area shape="rect" coords="589,2727,2041,3005"  href="https://www.corsair.com/us/en/c/psu" alt="Psu" target="_blank" >
+        </map>
+        <p>
+            Building your own PC is not just about selecting the right parts—it's about understanding how these components interact to deliver top-tier performance. A well-built PC can offer years of reliable service, and by understanding the basics of each component, you can make informed decisions that will enhance your computing experience.
+        </p>
+
+        <p>
+            Whether you're a gamer, a designer, or someone who needs a powerful machine for everyday tasks, knowing the hardware inside your PC can help you optimize its performance and troubleshoot issues when they arise.
+        </p>
+
+        <h2 id="building-a-pc">Building a PC</h2>
+
+        <p>
+            Building your own PC can be a fun and rewarding experience. It allows you to customize your machine to your specific needs and budget. Here are some tips to help you get started:
+        </p>
+
+        <h2 id="troubleshooting">Troubleshooting</h2>
+
+        <p>
+            Troubleshooting common PC issues can be a daunting task, but with the right knowledge and tools, you can diagnose and fix problems quickly. Here are some common issues and their solutions:
+        </p>
+
+        <h2>Related Content</h2>
+
+        <ul>
+            <li><a href="#">How to Build a Gaming PC</a></li>
+            <li><a href="#">PC Hardware 101: A Beginner's Guide</a></li>
+            <li><a href="#">Troubleshooting Common PC Issues</a></li>
+        </ul>
+    </div>
+
+    <script>
+        const image = document.getElementById('pcImage');
+        const map = document.getElementById('PcMap');
+        const areas = map.getElementsByTagName('area');
+    
+        image.addEventListener('load', () => {
+            updateCoords();
+        });
+    
+        window.addEventListener('resize', () => {
+            updateCoords();
+        });
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCoords();
+        });
+    
+        function updateCoords() {
+            const imageSize = image.getBoundingClientRect().width;
+            const imageHeight = image.getBoundingClientRect().height;
+            const originalWidth = 3000;
+            const originalHeight = 4000;
+    
+            console.log('Updating coordinates...');
+            console.log('Image size:', imageSize, 'x', imageHeight);
+            console.log('Original size:', originalWidth, 'x', originalHeight);
+    
+            Array.prototype.forEach.call(areas, (area) => {
+                const coords = area.coords.split(',');
+                const newCoords = [];
+    
+                coords.forEach((coord) => {
+                    const value = parseInt(coord, 10);
+                    let newValue;
+    
+                    if (imageSize / originalWidth > imageHeight / originalHeight) {
+                        newValue = value * (imageSize / originalWidth);
+                    } else {
+                        newValue = value * (imageHeight / originalHeight);
+                    }
+    
+                    newCoords.push(newValue);
+                });
+    
+                area.coords = newCoords.join(',');
+            });
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>
