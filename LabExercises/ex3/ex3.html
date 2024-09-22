@@ -114,7 +114,7 @@
             <li><a href="https://www.technology-solved.com/troubleshoot-a-computer/" target="_blank">Troubleshooting Common PC Issues</a></li>
         </ul>
     </div>
-
+    
     <script>
         const image = document.getElementById('pcImage');
         const map = document.getElementById('PcMap');
@@ -128,19 +128,11 @@
             updateCoords();
         });
     
-        document.addEventListener('DOMContentLoaded', function() {
-            updateCoords();
-        });
-    
         function updateCoords() {
             const imageSize = image.getBoundingClientRect().width;
             const imageHeight = image.getBoundingClientRect().height;
             const originalWidth = 3000;
             const originalHeight = 4000;
-    
-            console.log('Updating coordinates...');
-            console.log('Image size:', imageSize, 'x', imageHeight);
-            console.log('Original size:', originalWidth, 'x', originalHeight);
     
             Array.prototype.forEach.call(areas, (area) => {
                 const coords = area.coords.split(',');
