@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC Components Feedback Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #121212;
+            color: #a0ffa0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            transition: background-color 0.5s;
+        }
+
+        h1 {
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+
+        pop {
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .form-container {
+            background-color: #1c1c1c;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0px 0px 20px rgba(0, 255, 0, 0.4);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #a0ffa0;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #121212;
+            border: 1px solid #00ff00;
+            color: #a0ffa0;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .btn-custom {
+            background-color: #00ff00;
+            color: #121212;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #a0ffa0;
+        }
+
+        #htext {
+            font-size: 20px;
+            cursor: pointer;
+            margin: 20px 0; 
+            text-align: center;
+        }
+
+        #container {
+            display: flex;
+            align-items: center; 
+        }
+
+        #time {
+            background-color: #00ff00;
+            color: #121212;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        #time:hover {
+            background-color: #a0ffa0;
+        }
+
+        #t {
+            font-size: 1.5rem;
+            color: #a0ffa0;
+            font-weight: bold;
+            margin-left: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .con {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto; 
+            overflow: hidden;
+        }
+        .img {
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .te {
+            position: absolute;
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%);
+            color: rgb(11, 10, 10);
+            text-align: center;
+            opacity: 0; 
+            transition: opacity 0.3s ease, top 0.3s ease;
+        }
+        .con:hover .img {
+            transform: translateY(30px);
+        }
+        .con:hover .te {
+            top: 15px;
+            opacity: 1;
+        }
+
+        .green-purple {
+            background-color: #220022;
+            color: #e6e600;
+        }
+
+        .green-purple label {
+            color: #e6e600;
+        }
+
+        .green-purple input,
+        .green-purple textarea {
+            background-color: #111;
+            color: #ff00ea;
+            border-color: #e600e6;
+        }
+
+        .green-purple h1 {
+            color: #aaff00;
+            text-shadow: 0 0 15px #ff00ff;
+        }
+
+        .green-purple pop {
+            color: #aaff00;
+            text-shadow: 0 0 15px #ff00ff;
+        }
+
+        .green-purple .btn-custom {
+            background-color: #ff00ff;
+            color: #0d0d0d;
+        }
+
+        .green-purple .btn-custom:hover {
+            background-color: #e6e600;
+        }
+
+        .green-purple #time {
+            background-color: #ff00ff;
+            color: #0d0d0d;
+        }
+
+        .green-purple #time:hover {
+            background-color: #e6e600;
+        }
+
+        .green-purple #t {
+            color: #ff00ea;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let isGreenPurple = false;
+            let firstClick = true;
+
+            document.body.addEventListener('click', function() {
+                if (firstClick) {
+                    isGreenPurple = !isGreenPurple;
+
+                    if (isGreenPurple) {
+                        document.body.classList.add('green-purple');
+                    } else {
+                        document.body.classList.remove('green-purple');
+                    }
+
+                    firstClick = false;
+                }
+            });
+
+            let interval;
+            document.getElementById('time').addEventListener('click', function() {
+                clearInterval(interval);
+                updateTime();
+                interval = setInterval(updateTime, 1000);
+            });
+
+            function updateTime() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString();
+                document.getElementById('t').textContent = timeString;
+            }
+
+            window.validateForm = function(event) {
+                event.preventDefault();
+
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const subject = document.getElementById('subject').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+                let isValid = true;
+
+                if (!name) {
+                    alert('Name is required');
+                    document.getElementById('name').focus(); 
+                    isValid = false;
+                } else if (!email) {
+                    alert('Email is required');
+                    document.getElementById('email').focus();
+                    isValid = false;
+                } else if (!subject) {
+                    alert('Subject is required');
+                    document.getElementById('subject').focus();
+                    isValid = false;
+                } else if (!message) {
+                    alert('Message is required');
+                    document.getElementById('message').focus();
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    alert('Form submitted successfully!');
+                }
+            };
+
+            const hoverText = document.getElementById('htext');
+
+            hoverText.addEventListener('mouseenter', () => {
+                hoverText.textContent = 'Loading.....';
+            });
+
+            hoverText.addEventListener('mouseleave', () => {
+                hoverText.textContent = 'Task Completed';
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Contact Us / Feedback</h1>
+
+    <div id="container">
+        <button id="time">Show time</button>
+        <div id="t"></div>
+    </div>
+
+    <div class="form-container">
+        <form id="myForm" onsubmit="validateForm(event)">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" placeholder="Enter subject" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" placeholder="Enter your message or feedback" required></textarea>
+
+            <button type="submit" class="btn-custom">Submit</button>
+        </form>
+    </div>
+
+    <div id="htext">Place your cursor</div>
+
+    <div class="con">
+        <img src="PC.jpeg" alt="pic" class="img">
+        <div class="te"><pop>For Glory</pop></div>
+    </div>
+</body>
+</html>
