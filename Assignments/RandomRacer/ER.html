@@ -9,8 +9,8 @@
         body {
             font-family: 'Uncial Antiqua', sans-serif;
             text-align: center;
-            background: #2e2e2e; /* Dark background to match the show's theme */
-            color: #d1d1d1; /* Light text color for contrast */
+            background: #2e2e2e;
+            color: #d1d1d1;
             margin: 0;
             padding: 0;
             height: 100vh;
@@ -24,11 +24,11 @@
             height: 300px;
             position: relative;
             margin: 20px auto;
-            border: 3px solid #444; /* Darker border for a more grim feel */
-            border-radius: 5%; /* Slightly softened rounded corners */
+            border: 3px solid #444;
+            border-radius: 5%;
             overflow: hidden;
-            background: linear-gradient(45deg, #3a3a3a, #1a1a1a); /* Subtle dark gradient */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), 0 0 15px 5px rgba(255, 215, 0, 0.7); /* Add golden glow effect */
+            background: linear-gradient(45deg, #3a3a3a, #1a1a1a);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), 0 0 15px 5px rgba(255, 215, 0, 0.7);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -42,7 +42,7 @@
             left: 10px;
             right: 10px;
             bottom: 10px;
-            border: 2px dashed #555; /* Dark dashed inner border for texture */
+            border: 2px dashed #555;
             border-radius: 5%;
         }
 
@@ -75,7 +75,7 @@
             height: 30px;
             position: absolute;
             border-radius: 50%;
-            background-color: #b27f00; /* Gold-ish color for a regal touch */
+            background-color: #b27f00;
             opacity: 0.8;
             cursor: pointer;
         }
@@ -85,15 +85,15 @@
             padding: 12px 24px;
             font-size: 18px;
             cursor: pointer;
-            background-color: #6a4e23; /* Deep brown for a rustic, medieval look */
-            color: #fff; /* White text to contrast against the brown */
+            background-color: #6a4e23;
+            color: #fff;
             border: none;
             border-radius: 8px;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         button:hover {
-            background-color: #b27f00; /* Gold on hover for a royal feel */
+            background-color: #b27f00;
             transform: scale(1.05);
         }
 
@@ -107,7 +107,7 @@
             font-size: 20px;
             margin-top: 20px;
             height: 24px;
-            color: #d1d1d1; /* Subtle light color for text */
+            color: #d1d1d1;
         }
 
         #WImage {
@@ -122,21 +122,20 @@
         <div class="race-track" id="race-track"></div>
         <button onclick="startRace()">Start Race</button>
         <p id="message"></p>
-        <div id="WImage"></div> <!-- Changed to a div for image display -->
+        <div id="WImage"></div>
 
     <script>
-        // Define the speed modifiers for each character based on terrain
+        
         const speeds = {
             char1: { desert: 0.9, forest: 1.2, snow: 0.7 },
             char2: { desert: 1.2, forest: 0.7, snow: 0.9 },
             char3: { desert: 1, forest: 0.9, snow: 1.4 }
         };
 
-        // Define the power-up effects for each character
         const powerUpEffects = {
-            char1: 'VoidedTime',          // Stops down other characters
-            char2: 'FatesGamble',        // Changes terrain
-            char3: 1.5                     // Speed boost
+            char1: 'VoidedTime',         // Stops other character
+            char2: 'FatesGamble',        // Changes terrain and slows them
+            char3: 1.5                   // Speed boost
         };
 
         // Global variables to manage the terrain sequence and power-ups
@@ -292,26 +291,21 @@
 
                 // Randomly select an image source
                 const randomImage = powerUpImages[Math.floor(Math.random() * powerUpImages.length)];
-                powerUp.src = randomImage;  // Set the source of the image randomly
-                powerUp.alt = 'Power Up';  // Alt text for accessibility
-                powerUp.style.position = 'absolute';  // Set position to absolute
-                powerUp.style.left = `${x}px`;  // Set the x position
-                powerUp.style.top = `${y}px`;   // Set the y position
-                powerUp.style.width = '30px';   // Set width
-                powerUp.style.height = '30px';  // Set height
+                powerUp.src = randomImage; 
+                powerUp.alt = 'Power Up'; 
+                powerUp.style.position = 'absolute';
+                powerUp.style.left = `${x}px`;
+                powerUp.style.top = `${y}px`; 
+                powerUp.style.width = '30px'; 
+                powerUp.style.height = '30px';
 
-                document.body.appendChild(powerUp);  // Append the image to the body
+                document.body.appendChild(powerUp); 
                 return powerUp;
             });
 
             return generatedPowerUps;
         }
 
-        /**
-         * Shuffles an array using the Fisher-Yates algorithm.
-         * @param {Array} array - The array to shuffle.
-         * @returns {Array} The shuffled array.
-         */
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -320,12 +314,6 @@
             return array;
         }
 
-        /**
-         * Checks if a character has collected a power-up.
-         * @param {HTMLElement} char - The character element.
-         * @param {number} charPosition - The horizontal position of the character.
-         * @param {string} charId - The character's ID.
-         */
         function checkPowerUpCollection(char, charPosition, charId) {
             powerUps.forEach((powerUp, index) => {
                 const powerUpRect = powerUp.getBoundingClientRect();
@@ -343,10 +331,6 @@
             });
         }
 
-        /**
-         * Applies the effect of a collected power-up to a character.
-         * @param {string} charId - The character's ID.
-         */
          function applyPowerUpEffect(charId) {
             if (powerUpEffects[charId] === 'VoidedTime') {
                 // Stops down other characters (char2 and char3) for 2.5 seconds
@@ -380,12 +364,12 @@
                     terrain.className = 'terrain ' + newTerrainSequence[index % newTerrainSequence.length];
                 });
                 // Update the global terrain sequence for race logic
-                randomTerrainSequence.length = 0; // Clear previous sequence
+                randomTerrainSequence.length = 0;
                 randomTerrainSequence.push(...newTerrainSequence);
                 console.log(`Terrain has been re-randomized by ${charId}.`);
 
                 // Pullback effect: slows down other characters temporarily
-                const pullbackFactor = 0.5; // Slow down factor (0.5 = 50% speed)
+                const pullbackFactor = 0.5;
                 const originalSpeedsChar1 = { ...speeds.char1 };
                 const originalSpeedsChar3 = { ...speeds.char3 };
 
@@ -427,11 +411,6 @@
             }
         }
 
-        /**
-         * Determines the terrain type at a specific position.
-         * @param {number} position - The character's current position.
-         * @returns {string} The terrain type.
-         */
         function getTerrain(position) {
             const index = Math.floor(position / 100); 
             return randomTerrainSequence[index] || 'desert'; // Default to desert if out of bounds
