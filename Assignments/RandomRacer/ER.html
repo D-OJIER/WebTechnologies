@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
+    <title>Epic Race</title>
+    <style>
+        body {
+            font-family: 'Uncial Antiqua', sans-serif;
+            text-align: center;
+            background: #2e2e2e; /* Dark background to match the show's theme */
+            color: #d1d1d1; /* Light text color for contrast */
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+        h1{
+            color: #b27f00;
+        }
+        .race-track {
+            width: 100%;
+            max-width: 800px;
+            height: 300px;
+            position: relative;
+            margin: 20px auto;
+            border: 3px solid #444; /* Darker border for a more grim feel */
+            border-radius: 5%; /* Slightly softened rounded corners */
+            overflow: hidden;
+            background: linear-gradient(45deg, #3a3a3a, #1a1a1a); /* Subtle dark gradient */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), 0 0 15px 5px rgba(255, 215, 0, 0.7); /* Add golden glow effect */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .race-track::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px dashed #555; /* Dark dashed inner border for texture */
+            border-radius: 5%;
+        }
+
+        .character {
+            width: 60px;
+            height: 75px;
+            position: absolute;
+            transform: translateY(-50%);
+            border-radius: 5px;
+            z-index: 2;
+        }
+
+        #char1 { background-image: url('assets/char1.png'); background-size: cover; }
+        #char2 { background-image: url('assets/char2.png'); background-size: cover; }
+        #char3 { background-image: url('assets/char3.png'); background-size: cover; }
+
+        .terrain {
+            position: absolute;
+            height: 100%;
+            opacity: 0.85;
+            width: 100px;
+        }
+
+        .desert { background-image: url('assets/desert.jpg'); background-size: cover; }
+        .forest { background-image: url('assets/forest.jpg'); background-size: cover; }
+        .snow { background-image: url('assets/snow.jpg'); background-size: cover; }
+
+        .power-up {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            border-radius: 50%;
+            background-color: #b27f00; /* Gold-ish color for a regal touch */
+            opacity: 0.8;
+            cursor: pointer;
+        }
+
+        button {
+            font-family: 'Uncial Antiqua', sans-serif;
+            padding: 12px 24px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #6a4e23; /* Deep brown for a rustic, medieval look */
+            color: #fff; /* White text to contrast against the brown */
+            border: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #b27f00; /* Gold on hover for a royal feel */
+            transform: scale(1.05);
+        }
+
+        button:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+        }
+
+        #message {
+            font-family: 'Uncial Antiqua', sans-serif;
+            font-size: 20px;
+            margin-top: 20px;
+            height: 24px;
+            color: #d1d1d1; /* Subtle light color for text */
+        }
+
+        #WImage {
+            width: auto;
+        }
+
+        
+    </style>
+</head>
+<body>
+        <h1>Epic Race</h1>
+        <div class="race-track" id="race-track"></div>
+        <button onclick="startRace()">Start Race</button>
+        <p id="message"></p>
+        <div id="WImage"></div> <!-- Changed to a div for image display -->
+
+    <script>
+        // Define the speed modifiers for each character based on terrain
+        const speeds = {
+            char1: { desert: 0.9, forest: 1.2, snow: 0.7 },
+            char2: { desert: 1.2, forest: 0.7, snow: 0.9 },
+            char3: { desert: 1, forest: 0.9, snow: 1.4 }
+        };
+
+        // Define the power-up effects for each character
+        const powerUpEffects = {
+            char1: 'VoidedTime',          // Stops down other characters
+            char2: 'FatesGamble',        // Changes terrain
+            char3: 1.5                     // Speed boost
+        };
+
+        // Global variables to manage the terrain sequence and power-ups
+        let randomTerrainSequence = [];
+        let powerUps = []; // Stores current power-ups on the track
+
+        /**
+         * Starts the race by initializing characters, terrain, and power-ups.
+         */
+        function startRace() {
+            const raceTrack = document.getElementById("race-track");
+            raceTrack.innerHTML = ''; // Clear previous race elements
+            document.getElementById("message").textContent = "";
+            document.getElementById("WImage").innerHTML = "";
+            // Create and append characters to the race track
+            const char1 = createCharacter('char1', 50);
+            const char2 = createCharacter('char2', 150);
+            const char3 = createCharacter('char3', 250);
+
+            raceTrack.appendChild(char1);
+            raceTrack.appendChild(char2);
+            raceTrack.appendChild(char3);
+
+            // Generate and display the initial random terrain sequence
+            randomTerrainSequence = generateRandomTerrainSequence();
+            let currentPosition = 0;
+
+            randomTerrainSequence.forEach(terrain => {
+                const terrainDiv = document.createElement('div');
+                terrainDiv.classList.add('terrain', terrain);
+                terrainDiv.style.left = currentPosition + 'px';
+                terrainDiv.style.width = '100px';
+                raceTrack.appendChild(terrainDiv);
+                currentPosition += 100;
+            });
+
+            // Generate and display a limited number of power-ups (2 to 4)
+            powerUps = generatePowerUps();
+            powerUps.forEach(powerUp => raceTrack.appendChild(powerUp));
+
+            // Initialize character positions
+            let char1Position = 0, char2Position = 0, char3Position = 0;
+            let isRaceOngoing = true;
+
+            /**
+             * Animates the race by updating character positions based on terrain and speed.
+             */
+            function raceAnimation() {
+                if (!isRaceOngoing) return;
+
+                // Determine current terrain for each character
+                let char1Terrain = getTerrain(char1Position);
+                let char2Terrain = getTerrain(char2Position);
+                let char3Terrain = getTerrain(char3Position);
+
+                // Calculate speeds based on terrain
+                let char1Speed = speeds.char1[char1Terrain];
+                let char2Speed = speeds.char2[char2Terrain];
+                let char3Speed = speeds.char3[char3Terrain];
+
+                // Check for power-up collections
+                checkPowerUpCollection(char1, char1Position, 'char1');
+                checkPowerUpCollection(char2, char2Position, 'char2');
+                checkPowerUpCollection(char3, char3Position, 'char3');
+
+                // Update character positions
+                char1Position += char1Speed;
+                char2Position += char2Speed;
+                char3Position += char3Speed;
+
+                // Reflect positions on the UI
+                char1.style.left = char1Position + "px";
+                char2.style.left = char2Position + "px";
+                char3.style.left = char3Position + "px";
+
+                // Check for race completion
+                if (char1Position >= 800) {
+                    isRaceOngoing = false;
+                    document.getElementById("message").textContent = "The one of the night triumphs.";
+                    document.getElementById("WImage").innerHTML = "<img src='assets/char1.png' width= 300 height= auto>";
+                } else if (char2Position >= 800) {
+                    isRaceOngoing = false;
+                    document.getElementById("message").textContent = "The lone wanderer wins, for the path was his alone.";
+                    document.getElementById("WImage").innerHTML = "<img src='assets/char2.png' width= 300 height= auto>";
+                } else if (char3Position >= 800) {
+                    isRaceOngoing = false;
+                    document.getElementById("message").textContent = "The one with honor wins, for virtue guides the way.";
+                    document.getElementById("WImage").innerHTML = "<img src='assets/char3.png' width= 300 height= auto>";
+                } else {
+                    requestAnimationFrame(raceAnimation);
+                }
+            }
+
+            // Start the animation loop
+            requestAnimationFrame(raceAnimation);
+        }
+
+        /**
+         * Creates a character element with the given ID and vertical position.
+         * @param {string} id - The ID of the character.
+         * @param {number} topPosition - The vertical position (px) of the character.
+         * @returns {HTMLElement} The character DOM element.
+         */
+        function createCharacter(id, topPosition) {
+            const char = document.createElement('div');
+            char.classList.add('character');
+            char.id = id;
+            char.style.top = topPosition + 'px';
+            return char;
+        }
+
+        /**
+         * Generates a random sequence of terrains for the race track.
+         * @returns {string[]} An array representing the terrain sequence.
+         */
+        function generateRandomTerrainSequence() {
+            const sequence = [];
+            const terrains = ['desert', 'forest', 'snow'];
+            for (let i = 0; i < 8; i++) {
+                sequence.push(terrains[Math.floor(Math.random() * terrains.length)]);
+            }
+            return sequence;
+        }
+
+        /**
+         * Generates a limited number of power-ups (2 to 4) placed at random locations.
+         * @returns {HTMLElement[]} An array of power-up DOM elements.
+         */
+         function generatePowerUps() {
+            const xValues = [150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700];
+            const yValues = [35, 135, 235];
+
+            // Array of possible power-up image sources
+            const powerUpImages = [
+                'assets/power1.png',
+                'assets/power2.png',
+                'assets/power3.png'
+            ];
+
+            // Generate 50 random pairs for possible power-up positions
+            const possibleLocations = Array.from({ length: 50 }, () => [
+                xValues[Math.floor(Math.random() * xValues.length)],
+                yValues[Math.floor(Math.random() * yValues.length)]
+            ]);
+
+            const numPowerUps = Math.floor(Math.random() * 3) + 2; // Random number between 2 and 4
+            const shuffled = shuffleArray([...possibleLocations]);
+            const selectedLocations = shuffled.slice(0, numPowerUps);
+
+            // Generate the power-ups using images and randomize the image source
+            const generatedPowerUps = selectedLocations.map(([x, y]) => {
+                const powerUp = document.createElement('img');  // Create an img element
+
+                // Randomly select an image source
+                const randomImage = powerUpImages[Math.floor(Math.random() * powerUpImages.length)];
+                powerUp.src = randomImage;  // Set the source of the image randomly
+                powerUp.alt = 'Power Up';  // Alt text for accessibility
+                powerUp.style.position = 'absolute';  // Set position to absolute
+                powerUp.style.left = `${x}px`;  // Set the x position
+                powerUp.style.top = `${y}px`;   // Set the y position
+                powerUp.style.width = '30px';   // Set width
+                powerUp.style.height = '30px';  // Set height
+
+                document.body.appendChild(powerUp);  // Append the image to the body
+                return powerUp;
+            });
+
+            return generatedPowerUps;
+        }
+
+        /**
+         * Shuffles an array using the Fisher-Yates algorithm.
+         * @param {Array} array - The array to shuffle.
+         * @returns {Array} The shuffled array.
+         */
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        /**
+         * Checks if a character has collected a power-up.
+         * @param {HTMLElement} char - The character element.
+         * @param {number} charPosition - The horizontal position of the character.
+         * @param {string} charId - The character's ID.
+         */
+        function checkPowerUpCollection(char, charPosition, charId) {
+            powerUps.forEach((powerUp, index) => {
+                const powerUpRect = powerUp.getBoundingClientRect();
+                const charRect = char.getBoundingClientRect();
+                if (charRect.left < powerUpRect.left + powerUpRect.width &&
+                    charRect.left + charRect.width > powerUpRect.left &&
+                    charRect.top < powerUpRect.top + powerUpRect.height &&
+                    charRect.top + charRect.height > powerUpRect.top) {
+                    powerUp.remove(); // Remove the collected power-up from the DOM
+                    powerUps.splice(index, 1); // Remove it from the power-ups array
+
+                    // Apply the power-up effect
+                    applyPowerUpEffect(charId);
+                }
+            });
+        }
+
+        /**
+         * Applies the effect of a collected power-up to a character.
+         * @param {string} charId - The character's ID.
+         */
+         function applyPowerUpEffect(charId) {
+            if (powerUpEffects[charId] === 'VoidedTime') {
+                // Stops down other characters (char2 and char3) for 2.5 seconds
+                console.log(`${charId} activated 'VoidedTime' power-up.`);
+                speeds.char2.desert *= 0;
+                speeds.char2.forest *= 0;
+                speeds.char2.snow *= 0;
+                speeds.char3.desert *= 0;
+                speeds.char3.forest *= 0;
+                speeds.char3.snow *= 0;
+
+                setTimeout(() => {
+                    // Restoring original speeds after 2.5 seconds
+                    speeds.char2 = { desert: 1.2, forest: 0.7, snow: 0.9 };
+                    speeds.char3 = { desert: 1, forest: 0.9, snow: 1.4 };
+                    console.log(`${charId}'s 'VoidedTime' effect has ended.`);
+                }, 1500);
+
+                document.getElementById("message").textContent = "Voided Time, Greet the void, for thy fate sealed in stillness";
+                document.getElementById("WImage").innerHTML = "<img src='assets/char1.png' width= 300 height= auto>";
+                setTimeout(() => {
+                    document.getElementById("message").textContent = "";
+                    document.getElementById("WImage").innerHTML = "";
+                }, 2000);
+
+            } else if (powerUpEffects[charId] === 'FatesGamble') {
+                // Re-randomize the terrain sequence and update the track visually
+                console.log(`${charId} activated 'FatesGamble' power-up.`);
+                const newTerrainSequence = generateRandomTerrainSequence();
+                document.querySelectorAll('.terrain').forEach((terrain, index) => {
+                    terrain.className = 'terrain ' + newTerrainSequence[index % newTerrainSequence.length];
+                });
+                // Update the global terrain sequence for race logic
+                randomTerrainSequence.length = 0; // Clear previous sequence
+                randomTerrainSequence.push(...newTerrainSequence);
+                console.log(`Terrain has been re-randomized by ${charId}.`);
+
+                // Pullback effect: slows down other characters temporarily
+                const pullbackFactor = 0.5; // Slow down factor (0.5 = 50% speed)
+                const originalSpeedsChar1 = { ...speeds.char1 };
+                const originalSpeedsChar3 = { ...speeds.char3 };
+
+                for (let terrain in originalSpeedsChar1) {
+                    speeds.char1[terrain] *= pullbackFactor;
+                    speeds.char3[terrain] *= pullbackFactor;
+                }
+
+                document.getElementById("message").textContent = "Cast thy lot, for the world bends to chaos and crumbles in thy wake! Fate's Gamble.";
+                document.getElementById("WImage").innerHTML = "<img src='assets/char2.png' width= 300 height= auto>";
+
+                randomTerrainSequence = generateRandomTerrainSequence();
+
+                setTimeout(() => {
+                    speeds.char1 = originalSpeedsChar1;
+                    speeds.char3 = originalSpeedsChar3;
+                    document.getElementById("message").textContent = "";
+                    document.getElementById("WImage").innerHTML = "";
+                    console.log(`Pullback effect of ${charId} has ended.`);
+                }, 2000);
+
+            } else if (typeof powerUpEffects[charId] === 'number') {
+                // Speed boost for the character collecting the power-up
+                console.log(`${charId} activated a speed boost power-up.`);
+                const boostFactor = powerUpEffects[charId];
+                const originalSpeeds = { ...speeds[charId] };
+
+                for (let terrain in originalSpeeds) {
+                    speeds[charId][terrain] *= boostFactor;
+                }
+                document.getElementById("message").textContent = `May the blood of mine ancestors awaken within me, for Love and Honor Ancestral Wrath`;
+                document.getElementById("WImage").innerHTML = "<img src='assets/char3.png' width= 300 height= auto>";
+                setTimeout(() => {
+                    speeds[charId] = originalSpeeds;
+                    document.getElementById("message").textContent = '';
+                    document.getElementById("WImage").innerHTML = "";
+                    console.log(`${charId}'s speed boost has ended.`);
+                }, 2500);
+            }
+        }
+
+        /**
+         * Determines the terrain type at a specific position.
+         * @param {number} position - The character's current position.
+         * @returns {string} The terrain type.
+         */
+        function getTerrain(position) {
+            const index = Math.floor(position / 100); 
+            return randomTerrainSequence[index] || 'desert'; // Default to desert if out of bounds
+        }
+    </script>
+</body>
+</html>
