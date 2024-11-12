@@ -262,7 +262,7 @@ function checkPowerUpCollection(char, charPosition, charId) {
             document.getElementById("message").textContent = "";
             document.getElementById("WImage").innerHTML = "";
             console.log(`Pullback effect of ${charId} has ended.`);
-        }, 2000);
+        }, 1500);
 
     } else if (typeof powerUpEffects[charId] === 'number') {
         // Speed boost for the character collecting the power-up
