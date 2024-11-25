@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                             http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <servlet>
+        <servlet-name>HelloServlet</servlet-name>
+        <servlet-class>HelloServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>HelloServlet</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+
+ <servlet>
+    <servlet-name>PCComponentServlet</servlet-name>
+    <servlet-class>classes.PCComponentServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>PCComponentServlet</servlet-name>
+    <url-pattern>/PCComponentServlet</url-pattern>
+</servlet-mapping>
+
+    <servlet>
+        <servlet-name>HelloServlet</servlet-name>
+        <servlet-class>HelloServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>HelloServlet</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>VisitCounterServlet</servlet-name>
+        <servlet-class>VisitCounterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VisitCounterServlet</servlet-name>
+        <url-pattern>/visitCounter</url-pattern>
+    </servlet-mapping>
+
+</web-app>
