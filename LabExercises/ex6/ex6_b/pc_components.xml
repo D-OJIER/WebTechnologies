@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pc_components>
+    <component>
+        <type>CPU</type>
+        <brand>Intel</brand>
+        <model>Core i9-11900K</model>
+        <price>549.99</price>
+        <rating>4.8</rating>
+    </component>
+    <component>
+        <type>GPU</type>
+        <brand>NVIDIA</brand>
+        <model>RTX 3080</model>
+        <price>699.99</price>
+        <rating>4.9</rating>
+    </component>
+    <component>
+        <type>Motherboard</type>
+        <brand>ASUS</brand>
+        <model>ROG Strix Z590-E</model>
+        <price>329.99</price>
+        <rating>4.7</rating>
+    </component>
+    <component>
+        <type>RAM</type>
+        <brand>Corsair</brand>
+        <model>Vengeance LPX 32GB</model>
+        <price>179.99</price>
+        <rating>4.6</rating>
+    </component>
+    <component>
+        <type>SSD</type>
+        <brand>Samsung</brand>
+        <model>970 EVO Plus 1TB</model>
+        <price>139.99</price>
+        <rating>4.8</rating>
+    </component>
+</pc_components>

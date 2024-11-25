@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC Components - XML Parser with File Upload</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0D0D0D;
+            color: #D3F8E2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .components-container {
+            background-color: #1A1A1A;
+            border: 2px solid #33FF66;
+            padding: 25px;
+            max-width: 600px;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 15px #33FF66;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Hover Effect for Container */
+        .components-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px #66FF99;
+        }
+
+        /* Header Styling */
+        .components-container h1 {
+            color: #33FF66;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #33FF66;
+        }
+
+        th {
+            color: #B8E986;
+            font-weight: bold;
+        }
+
+        td {
+            color: #D3F8E2;
+        }
+
+        /* Button and File Input Styling */
+        .load-button, .file-input {
+            padding: 10px 20px;
+            background-color: #33FF66;
+            color: #0D0D0D;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .load-button:hover {
+            background-color: #66FF99;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="components-container">
+        <h1>PC Components List</h1>
+        <input type="file" id="xmlFile" class="file-input" accept=".xml">
+        <button class="load-button" onclick="loadComponents()">Load Components</button>
+        <div id="components-data" style="margin-top: 20px;"></div>
+    </div>
+
+    <script>
+        function loadComponents() {
+            const fileInput = document.getElementById('xmlFile');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Please select an XML file.');
+                return;
+            }
+
+            // Create a FormData object to send the file
+            const formData = new FormData();
+            formData.append('xmlFile', file);
+
+            // Create an XMLHttpRequest object
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "parse_xml.php", true);
+
+            // Define a callback function to execute when the request is successful
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    const data = JSON.parse(xhr.responseText);
+
+                    // Check for errors in the response
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        displayComponents(data);
+                    }
+                }
+            };
+
+            // Send the request with the file
+            xhr.send(formData);
+        }
+
+        // Function to display the components in a table
+        function displayComponents(data) {
+            let output = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Brand</th>
+                            <th>Model</th>
+                            <th>Price ($)</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            data.forEach(component => {
+                output += `
+                    <tr>
+                        <td>${component.type}</td>
+                        <td>${component.brand}</td>
+                        <td>${component.model}</td>
+                        <td>${component.price}</td>
+                        <td>${component.rating}</td>
+                    </tr>
+                `;
+            });
+
+            output += '</tbody></table>';
+            document.getElementById('components-data').innerHTML = output;
+        }
+    </script>
+</body>
+
+</html>

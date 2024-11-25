@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form - PC Component Picker</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0D0D0D;
+            color: #D3F8E2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .feedback-container {
+            background-color: #1A1A1A;
+            border: 2px solid #33FF66;
+            padding: 25px;
+            max-width: 450px;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 15px #33FF66;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Hover Effect for Container */
+        .feedback-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px #66FF99;
+        }
+
+        /* Header Styling */
+        .feedback-container h1 {
+            color: #33FF66;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+
+        /* Form Group Styling */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        /* Label Styling */
+        label {
+            display: block;
+            color: #B8E986;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* Input Field Styling */
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 94%;
+            padding: 12px;
+            border: 1px solid #33FF66;
+            border-radius: 5px;
+            background-color: #121212;
+            color: #D3F8E2;
+            outline: none;
+            font-size: 15px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        /* Focus State for Inputs */
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            border-color: #66FF99;
+            box-shadow: 0 0 8px #66FF99;
+        }
+
+        /* Textarea Styling */
+        textarea {
+            resize: none;
+        }
+
+        /* Submit Button Styling */
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #33FF66;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #0D0D0D;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        /* Hover State for Submit Button */
+        input[type="submit"]:hover {
+            background-color: #66FF99;
+            box-shadow: 0 0 10px #66FF99;
+        }
+
+        /* Feedback Messages */
+        .success-message,
+        .error-message {
+            margin-top: 20px;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .success-message {
+            background-color: #33FF66;
+            color: #0D0D0D;
+        }
+
+        .error-message {
+            background-color: #FF3333;
+            color: #FFFFFF;
+        }
+
+        /* Link to View Feedback */
+        .view-feedback-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .view-feedback-link a {
+            color: #33FF66;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        /* Hover State for Link */
+        .view-feedback-link a:hover {
+            color: #66FF99;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="feedback-container">
+        <h1>Feedback Form</h1>
+        <form action="feedback.php" method="post">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="rating">Rating (1-5)</label>
+                <input type="text" id="rating" name="rating" required>
+            </div>
+            <div class="form-group">
+                <label for="comments">Comments</label>
+                <textarea id="comments" name="comments" rows="4"></textarea>
+            </div>
+            <input type="submit" value="Submit Feedback">
+        </form>
+        <div class="view-feedback-link">
+            <a href="view_feedback.php">View Feedback</a>
+        </div>
+    </div>
+</body>
+
+</html>
