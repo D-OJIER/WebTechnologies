@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC Components Session Handling</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0D0D0D;
+            color: #D3F8E2;
+            text-align: center;
+        }
+
+        .form-container {
+            background-color: #1A1A1A;
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #33FF66;
+            width: 50%;
+            border-radius: 10px;
+        }
+
+        input[type="text"], input[type="submit"], button {
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 80%;
+        }
+
+        input[type="submit"], button {
+            background-color: #33FF66;
+            color: #0D0D0D;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover, button:hover {
+            background-color: #66FF99;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>PC Components Session Management</h1>
+        <form action="LoginServlet" method="POST">
+            <input type="text" name="username" placeholder="Enter your username" required>
+            <input type="submit" value="Login (Cookie)">
+        </form>
+        <a href="URLRewriteServlet"><button>Session (URL Rewriting)</button></a>
+        <a href="HiddenFieldServlet"><button>Session (Hidden Fields)</button></a>
+    </div>
+</body>
+</html>
