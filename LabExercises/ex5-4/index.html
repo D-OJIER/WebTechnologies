@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC Component Catalog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0D0D0D;
+            color: #D3F8E2;
+            text-align: center;
+        }
+
+        .form-container, .table-container {
+            background-color: #1A1A1A;
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #33FF66;
+            width: 80%;
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #33FF66;
+            color: #D3F8E2;
+        }
+
+        th {
+            background-color: #0D0D0D;
+            color: #33FF66;
+        }
+
+        input[type="submit"] {
+            background-color: #33FF66;
+            color: #0D0D0D;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #66FF99;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Add New PC Component</h1>
+        <form action="PCComponentServlet" method="POST">
+            <input type="text" name="name" placeholder="Component Name" required><br><br>
+            <input type="text" name="category" placeholder="Category" required><br><br>
+            <input type="text" name="brand" placeholder="Brand" required><br><br>
+            <input type="number" step="0.01" name="price" placeholder="Price" required><br><br>
+            <input type="text" name="description" placeholder="Description"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
