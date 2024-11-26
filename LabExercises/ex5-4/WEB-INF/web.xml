@@ -1,0 +1,13 @@
+<web-app>
+
+    <servlet>
+        <servlet-name>PCComponentServlet</servlet-name>
+        <servlet-class>classes.PCComponentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PCComponentServlet</servlet-name>
+        <url-pattern>/PCComponentServlet</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>
