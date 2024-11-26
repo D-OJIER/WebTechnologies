@@ -1,0 +1,37 @@
+<web-app>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PCComponentServlet</servlet-name>
+        <servlet-class>PCComponentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PCComponentServlet</servlet-name>
+        <url-pattern>/PCComponentServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>URLRewriteServlet</servlet-name>
+        <servlet-class>URLRewriteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>URLRewriteServlet</servlet-name>
+        <url-pattern>/URLRewriteServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>HiddenFieldServlet</servlet-name>
+        <servlet-class>HiddenFieldServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HiddenFieldServlet</servlet-name>
+        <url-pattern>/HiddenFieldServlet</url-pattern>
+    </servlet-mapping>
+</web-app>
