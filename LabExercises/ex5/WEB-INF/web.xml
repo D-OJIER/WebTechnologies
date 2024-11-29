@@ -11,24 +11,14 @@
         <url-pattern>/hello</url-pattern>
     </servlet-mapping>
 
- <servlet>
-    <servlet-name>PCComponentServlet</servlet-name>
-    <servlet-class>classes.PCComponentServlet</servlet-class>
-</servlet>
-
-<servlet-mapping>
-    <servlet-name>PCComponentServlet</servlet-name>
-    <url-pattern>/PCComponentServlet</url-pattern>
-</servlet-mapping>
-
-    <servlet>
-        <servlet-name>HelloServlet</servlet-name>
-        <servlet-class>HelloServlet</servlet-class>
+     <servlet>
+        <servlet-name>PCComponentServlet</servlet-name>
+        <servlet-class>classes.PCComponentServlet</servlet-class>
     </servlet>
-
+    
     <servlet-mapping>
-        <servlet-name>HelloServlet</servlet-name>
-        <url-pattern>/hello</url-pattern>
+        <servlet-name>PCComponentServlet</servlet-name>
+        <url-pattern>/PCComponentServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
